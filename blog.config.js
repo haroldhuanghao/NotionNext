@@ -1,5 +1,11 @@
 // 注: process.env.XX是Vercel的环境变量，配置方式见：https://docs.tangly1024.com/article/how-to-config-notion-next#c4768010ae7d44609b744e79e2f9959a
 
+// ❤️ 第一步：先定义计算恋爱天数的逻辑（放在 GREETING_WORDS 上方）
+const startDate = new Date("2022-05-20"); // ⚠️ 请在这里修改为你们的【恋爱纪念日】
+const today = new Date();
+const timeDiff = today - startDate;
+const dayCount = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
 const BLOG = {
   API_BASE_URL: process.env.API_BASE_URL || 'https://www.notion.so/api/v3', // API默认请求地址,可以配置成自己的地址例如：https://[xxxxx].notion.site/api/v3
   // Important page_id！！！Duplicate Template from  https://tanghh.notion.site/02ab3b8678004aa69e9e415905ef32a5
@@ -65,7 +71,7 @@ const BLOG = {
   // 欢迎语打字效果,Hexo,Matery主题支持, 英文逗号隔开多个欢迎语。
   GREETING_WORDS:
     process.env.NEXT_PUBLIC_GREETING_WORDS ||
-    'Hi，我是一个程序员, Hi，我是一个打工人,Hi，我是一个干饭人,欢迎来到我的博客🎉',
+    `Hi，这是我们相爱的第 ${dayCount} 天 💕, 始于初见，止于终老 🌹, 陪伴是最长情的告白, 欢迎来到属于我们的空间 🎉`,
 
   // uuid重定向至 slug
   UUID_REDIRECT: process.env.UUID_REDIRECT || false
