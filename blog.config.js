@@ -1,10 +1,14 @@
 // 注: process.env.XX是Vercel的环境变量，配置方式见：https://docs.tangly1024.com/article/how-to-config-notion-next#c4768010ae7d44609b744e79e2f9959a
 
-// ❤️ 第一步：先定义计算恋爱天数的逻辑（放在 GREETING_WORDS 上方）
-const startDate = new Date("2022-05-20"); // ⚠️ 请在这里修改为你们的【恋爱纪念日】
-const today = new Date();
-const timeDiff = today - startDate;
-const dayCount = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+// --- ❤️ 恋爱计时配置区域 (请修改这里) ---
+const meetDate = new Date("2025-07-18"); // 📅 在这里填入你们【第一次认识】的日期
+const loveDate = new Date("2025-12-26"); // 📅 在这里填入你们【正式在一起】的日期
+// ------------------------------------
+
+// ⏳ 自动计算逻辑 (无需修改)
+const now = new Date();
+const meetDays = Math.floor((now - meetDate) / (1000 * 60 * 60 * 24)); // 相识天数
+const loveDays = Math.floor((now - loveDate) / (1000 * 60 * 60 * 24)); // 相爱天数
 
 const BLOG = {
   API_BASE_URL: process.env.API_BASE_URL || 'https://www.notion.so/api/v3', // API默认请求地址,可以配置成自己的地址例如：https://[xxxxx].notion.site/api/v3
@@ -71,7 +75,7 @@ const BLOG = {
   // 欢迎语打字效果,Hexo,Matery主题支持, 英文逗号隔开多个欢迎语。
   GREETING_WORDS:
     process.env.NEXT_PUBLIC_GREETING_WORDS ||
-    `Hi，这是我们相爱的第 ${dayCount} 天 💕, 始于初见，止于终老 🌹, 陪伴是最长情的告白, 欢迎来到属于我们的空间 🎉`,
+    `Hi，这是我们相识的第 ${meetDays} 天 👋, 也是我们在一起的第 ${loveDays} 天 💕, 欢迎来到属于我们的空间 🎉`,
 
   // uuid重定向至 slug
   UUID_REDIRECT: process.env.UUID_REDIRECT || false
